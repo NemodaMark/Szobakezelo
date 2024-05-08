@@ -1,4 +1,5 @@
 import room_define
+import claim_data_gui 
 
 class manage:
     
@@ -17,21 +18,11 @@ class manage:
             print(item.price)
         return rooms
             
-    # def write():
-    #     #writing
+    def write():
+        writer = open("assets\important_datas\data.txt", "w")
+        print("asd")
 
-    # def delete():
+    def delete():
+        print("dsa")
 
-    #     #deleting
-
-    # def update():
-
-    #     #updating
-    
-    # def save_data():
-    #     #saving data
-
-    # def load_data():
-
-    #     #loading data
     read()
