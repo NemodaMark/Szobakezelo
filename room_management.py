@@ -1,11 +1,11 @@
 import room_define
-import claim_data_gui 
+
 
 class manage:
-    
+
     def read():
         rooms = []
-        reader = open("assets\important_datas\data.txt", "r")
+        reader = open("assets/important_datas/data.txt", "r")
         for item in reader:
             i = item.strip().split(";")
             if len(i) < len(room_define.room.default_values()):
@@ -17,12 +17,17 @@ class manage:
         for item in rooms:
             print(item.price)
         return rooms
-            
-    def write():
-        writer = open("assets\important_datas\data.txt", "w")
-        print("asd")
 
+    def write():
+        with open("assets/important_datas/data.txt", "w") as writer:
+            for room in rooms:
+                # Implement the logic to write the room data to the file
+                pass
     def delete():
-        print("dsa")
+        room.claimed = 0
+        room.start_date = ""
+        room.end_date = ""
+        room.claimer_name = ""
+        # I want to edit room.claimed = 0, start date = " ", end date = " " , claimer name = " "
 
     read()
