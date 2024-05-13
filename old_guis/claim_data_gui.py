@@ -2,10 +2,13 @@ import tkinter as tk
 from tkinter import ttk
 import tkinter.messagebox as messagebox
 from datetime import datetime
+import room_management
 
 class Application(tk.Tk):
-    def __init__(self):
+    def __init__(self, room_id):
         tk.Tk.__init__(self)
+        self.room_id = room_id  # Store the room ID
+
         self.title("Tkinter GUI")
 
         # create label and entry box for name
@@ -62,25 +65,26 @@ class Application(tk.Tk):
 
         # check if name is not empty and does not contain special characters
         if not name or any(c in "!,:?" for c in name):
-            tk.messagebox.showerror("Error", "Name cannot be empty or contain special characters")
+            messagebox.showerror("Error", "Name cannot be empty or contain special characters")
             return
 
         # check if start date is not in the past or today
         start_date = datetime(int(start_year), int(start_month), int(start_day))
         if start_date <= datetime.now():
-            tk.messagebox.showerror("Error", "Start date cannot be in the past or today")
+            messagebox.showerror("Error", "Start date cannot be in the past or today")
             return
 
         # check if end date is not in the past or today
         end_date = datetime(int(end_year), int(end_month), int(end_day))
         if end_date <= datetime.now():
-            tk.messagebox.showerror("Error", "End date cannot be in the past or today")
+            messagebox.showerror("Error", "End date cannot be in the past or today")
             return
 
         # if all checks pass, save data in a list
-        data = [name, start_date, end_date]
-        print(data)
+        data = [self.room_id, name, start_date, end_date]  # Include room ID in the data
+        room_management.manage.write(data)
+        print("Data sent successfully:", data)
 
-if __name__ == "__main__":
-    app = Application()
+def open_claim_gui(room_id):
+    app = Application(room_id)
     app.mainloop()
