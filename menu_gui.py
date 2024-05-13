@@ -38,9 +38,9 @@ def show_rooms(claimed_filter=None):
 
     # Show all rooms in the first table
     for room in all_rooms:
-        if claimed_filter == 1 and room.start_date != " ":
+        if claimed_filter == 1 and room.claimed == "1":
             claimed_table.append((room.id, room.beds, room.price, room.vip, room.claimed, room.start_date, room.end_date, room.claimer_name))
-        elif claimed_filter == 0 and room.start_date == " ":
+        elif claimed_filter == 0 and room.claimed == "0":
             unclaimed_table.append((room.id, room.beds, room.price, room.vip, room.claimed, room.start_date, room.end_date, room.claimer_name))
         else:
             table.append((room.id, room.beds, room.price, room.vip, room.claimed, room.start_date, room.end_date, room.claimer_name))
